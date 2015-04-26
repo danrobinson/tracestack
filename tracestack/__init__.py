@@ -2,7 +2,8 @@ import sys, urllib, webbrowser
 
 def tracestack():
     try:
-        last_error = "{0} {1}".format(sys.last_type, sys.last_value)
+        last_error = "{0} {1}".format(sys.last_type.__name__, 
+                                      sys.last_value)
     except:
         raise Exception("No error message available.")
     error_query = urllib.urlencode({"q": "[python] " + last_error})
