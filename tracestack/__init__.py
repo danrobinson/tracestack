@@ -1,12 +1,11 @@
-import sys, urllib, webbrowser
+# import shortcuts
+from tracestack.debugger import enable, disable, pm
+from tracestack.decorators import trace
 
-def tracestack():
-    try:
-        last_error = "{0} {1}".format(sys.last_type.__name__, 
-                                      sys.last_value)
-    except:
-        raise Exception("No error message available.")
-    error_query = urllib.urlencode({"q": "[python] " + last_error})
-    search_url = "http://stackoverflow.com/search?q=" + error_query
-    webbrowser.open(search_url)
-    
+
+
+
+
+
+
+
