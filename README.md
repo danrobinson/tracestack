@@ -14,9 +14,7 @@ Instantly search your Python error messages on the web
 
 ## Installation
 
-Install using pip:
-
-    pip install git+git://github.com/danrobinson/tracestack.git
+    pip install tracestack
 
 ## Uses and Examples
 
