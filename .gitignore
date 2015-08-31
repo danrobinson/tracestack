@@ -58,3 +58,6 @@ target/
 
 # Sublime project
 *.sublime*
+
+# DS_Store
+.DS_Store
