@@ -20,7 +20,7 @@ Instantly search your Python error messages on the web
 
 Do a post-mortem autopsy of your last exception ...
 
-    >>> 1/0
+    >>> 1 / 0
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
@@ -34,26 +34,21 @@ Do a post-mortem autopsy of your last exception ...
 ... or catch all future exceptions ...
 
     >>> tracestack.enable()
-    >>> 1/0
+    >>> 1 / 0
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
     Type s to search this error message on Stack Overflow (using Google):
-    >>> tracestack.disable() # optional
+
+    >>> tracestack.disable()
 
 ... or catch exceptions in only one function ...
 
     from tracestack import trace
 
     >>> @trace
-    >>> def buggy_function():
-        1/0
-    
-    >>> buggy_function()
-    Traceback (most recent call last):
-      File "<console>", line 1, in <module>
-    ZeroDivisionError: integer division or modulo by zero
-    Type s to search this error message on Stack Overflow (using Google):
+    >>> def divide_by_zero():
+            1 / 0
 
 ... or in any Python script run from the command line ...
 
@@ -66,7 +61,7 @@ Do a post-mortem autopsy of your last exception ...
     [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     (TracestackConsole)
-    >>> 
+    >>> 1 / 0
 
 
 
@@ -91,17 +86,15 @@ Do a post-mortem autopsy of your last exception ...
 
 In addition to being used on the command line, any of these arguments can be passed to the `pm`, `enable`, and `trace` functions:
     
-    tracestack.pm(skip=True)
-    # will immediately run search based on the last exception
-
-    tracestack.enable(engine="google")
-    # future exceptions will prompt a search of the entire web
+    >>> 1/0
+    >>> tracestack.pm(skip=True) # immediately runs search based on last exception
     
-    tracestack.trace(engine="stackoverflow")
-    def buggy_function():
-         """exceptions raised by this function will prompt 
-         a search directly on stackoverflow.com """
-         ...
+    >>> tracestack.enable(engine="google")
+    >>> 1/0
+    
+    >>> tracestack.trace(engine="stackoverflow")
+    >>> def divide_by_zero():
+    ...     1/0
 
 ## Excellent Alternatives 
 
