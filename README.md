@@ -1,5 +1,5 @@
 # Tracestack
-Instantly search your Python error messages on the web
+Instantly search your Python error messages on the web.
 
 ## Features
 
