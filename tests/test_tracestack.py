@@ -93,10 +93,6 @@ class TestFunctions(unittest.TestCase):
 		tracestack.disable()
 		self.assertIs(sys.excepthook, sys.__excepthook__)
 
-	def test_pm(self):
-		with self.assertRaises(ValueError):
-			tracestack.pm()
-
 	def test_decorator(self):
 		@tracestack.trace
 		def buggy_function():

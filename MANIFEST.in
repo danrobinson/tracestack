@@ -1,4 +1,4 @@
-include README.md LICENSE
+include README.md LICENSE tox.ini
 recursive-include tracestack *
 recursive-include tests *
 recursive-exclude tracestack *.pyc

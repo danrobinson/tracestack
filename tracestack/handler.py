@@ -54,7 +54,6 @@ class ExceptionHandler(object):
             return True
         else:
             choice = getch("Hit spacebar to search this error message on %s: " % self.engine.name())
-            print("")
             if choice == " ":
                 return True
             else:

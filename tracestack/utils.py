@@ -3,6 +3,7 @@
 Thanks to Danny Yoo (http://code.activestate.com/recipes/134892/)
 """
 from __future__ import print_function
+import sys
 
 class _GetchUnix:
     def __init__(self):
@@ -40,7 +41,10 @@ class _Getch:
 
     def __call__(self, msg): 
         print(msg, end="")
-        return self.impl(msg)
+        sys.stdout.flush()
+        char = self.impl(msg)
+        print(char)
+        return char
 
 
 
