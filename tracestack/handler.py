@@ -1,11 +1,7 @@
 from __future__ import print_function
 import sys, webbrowser, traceback
 from tracestack.engines import GoogleEngine, StackEngine
-
-try: 
-    input = raw_input
-except NameError: 
-    input = input
+from tracestack.utils import getch
 
 class ExceptionHandler(object):
     """Callable exception handler that can replace sys.__excepthook__."""
@@ -57,8 +53,9 @@ class ExceptionHandler(object):
         if self.skip:
             return True
         else:
-            choice = input("Type s to search this error message on %s: " % self.engine.name())
-            if choice == "s" or choice == "S":
+            choice = getch("Hit spacebar to search this error message on %s: " % self.engine.name())
+            print("")
+            if choice == " ":
                 return True
             else:
                 return False
