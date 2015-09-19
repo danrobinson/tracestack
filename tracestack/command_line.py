@@ -65,7 +65,6 @@ def _print_clean_traceback(einfo):
         # the error call is coming from inside the house
         # this shouldn't happen, but if it does, do the default behavior
         sys.__excepthook__(sys.exc_info)
-        print("inside the house")
     else:
         # remove the traceback levels that relate to runpy or trace
         extracted = [level for level in 

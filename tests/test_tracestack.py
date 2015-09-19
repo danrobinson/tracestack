@@ -13,6 +13,10 @@ mock_sys_exc_info = Mock(return_value=exc_return_value)
 mock_webbrowser = Mock()
 mock_traceback_print_exception = Mock()
 mock_getch = Mock(return_value=" ")
+mock_sys = Mock()
+mock_sys.last_type = exc_return_value[0]
+mock_sys.last_value = exc_return_value[1]
+mock_sys.last_traceback = exc_return_value[2]
 
 
 @patch('tracestack.handler.sys.exc_info', mock_sys_exc_info)
@@ -66,7 +70,6 @@ class TestHandler(unittest.TestCase):
 					  url=None):
 		prompt = prompt or self.default_prompt
 		url = url or self.default_url
-		mock_sys_exc_info.assert_called_once_with()
 		mock_traceback_print_exception.assert_called_once_with(*exc_return_value)
 		if skip:
 			mock_getch.assert_not_called()
@@ -74,6 +77,7 @@ class TestHandler(unittest.TestCase):
 			mock_getch.assert_called_with(prompt)
 		mock_webbrowser.open.assert_called_once_with(url)
 
+	@patch('tracestack.debugger.sys', mock_sys)
 	def test_pm(self):
 		tracestack.pm()
 		self.check_results()
