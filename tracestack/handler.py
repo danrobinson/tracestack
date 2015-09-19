@@ -35,19 +35,18 @@ class ExceptionHandler(object):
         sys.__excepthook__: type, value, traceback."""
         einfo = einfo or sys.exc_info()
         self._print_traceback(*einfo)
-        self._handle_error(*einfo)
+        self.handle_error(*einfo)
+
+    def handle_error(self, *einfo):
+        error_string = self._get_error_string(*einfo)
+        self._handle_string(error_string)
 
     def _print_traceback(self, *einfo):
         traceback.print_exception(*einfo)
 
-    def _handle_error(self, *einfo):
-        error_string = self._get_error_string(*einfo)
-        self._handle_string(error_string)
-
     def _get_error_string(self, *einfo):
         (etype, evalue, tb) = einfo
-        error_string = "{0} {1}".format(etype.__name__, 
-                                evalue)
+        error_string = traceback.format_exception_only(etype, evalue)[-1]
         return error_string
 
     def _search(self, error_string):

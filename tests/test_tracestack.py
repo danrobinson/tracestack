@@ -9,25 +9,25 @@ except ImportError:
 	from unittest.mock import Mock, patch
 
 exc_return_value = (type(Exception("exception message")), Exception("exception message"), Mock())
-mock_exc_info = Mock(return_value=exc_return_value)
+mock_sys_exc_info = Mock(return_value=exc_return_value)
 mock_webbrowser = Mock()
-mock_traceback = Mock()
+mock_traceback_print_exception = Mock()
 mock_input = Mock(return_value="s")
 
 
-@patch('tracestack.handler.sys.exc_info', mock_exc_info)
+@patch('tracestack.handler.sys.exc_info', mock_sys_exc_info)
 @patch('tracestack.handler.webbrowser', mock_webbrowser)
-@patch('tracestack.handler.traceback', mock_traceback)
+@patch('tracestack.handler.traceback.print_exception', mock_traceback_print_exception)
 @patch('tracestack.handler.input', mock_input)
 class TestHandler(unittest.TestCase):
 
-	default_url = 		('http://www.google.com/search?' + 
-			  			 'q=Exception+exception+message+python+site' +
-			  			 '%3Astackoverflow.com+inurl%3Aquestions')
-	google_url = 		('http://www.google.com/search?' +
-			   			 'q=Exception+exception+message+python')
-	stackoverflow_url = ('http://www.stackoverflow.com/search?' +
-			   			 'q=Exception+exception+message+%5Bpython%5D')
+	default_url = 		('http://www.google.com/search?q=Exception%3A' + 
+						 '+exception+message%0A+python+site%3Astackoverflow.com' +
+						 '+inurl%3Aquestions')
+	google_url = 		('http://www.google.com/search?q=Exception%3A' + 
+						 '+exception+message%0A+python')
+	stackoverflow_url = ('http://www.stackoverflow.com/search?' + 
+						 'q=Exception%3A+exception+message%0A+%5Bpython%5D')
 	default_prompt = 	   'Type s to search this error message on Stack Overflow (using Google): '
 	google_prompt =		   'Type s to search this error message on the web (using Google): '
 	stackoverflow_prompt = 'Type s to search this error message on Stack Overflow: '
@@ -36,9 +36,9 @@ class TestHandler(unittest.TestCase):
 		pass
 
 	def tearDown(self):
-		mock_exc_info.reset_mock()
+		mock_sys_exc_info.reset_mock()
 		mock_webbrowser.reset_mock()
-		mock_traceback.reset_mock()
+		mock_traceback_print_exception.reset_mock()
 		mock_input.reset_mock()
 
 	def test_default(self):
@@ -66,8 +66,8 @@ class TestHandler(unittest.TestCase):
 					  url=None):
 		prompt = prompt or self.default_prompt
 		url = url or self.default_url
-		mock_exc_info.assert_called_once_with()
-		mock_traceback.print_exception.assert_called_once_with(*exc_return_value)
+		mock_sys_exc_info.assert_called_once_with()
+		mock_traceback_print_exception.assert_called_once_with(*exc_return_value)
 		if skip:
 			mock_input.assert_not_called()
 		else:

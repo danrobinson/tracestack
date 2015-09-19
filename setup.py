@@ -3,12 +3,12 @@
 from setuptools import setup
 
 setup(name='tracestack',
-      version='0.1.4',
+      version='0.1.5',
       description='Instantly search your Python error messages on the web.',
       author='Dan Robinson',
       author_email='danrobinson010@gmail.com',
       url='https://www.github.com/danrobinson/tracestack',
-      download_url='https://github.com/danrobinson/tracestack/tarball/0.1.4',
+      download_url='https://github.com/danrobinson/tracestack/tarball/0.1.5',
       setup_requires=['setuptools-markdown'],
       long_description_markdown_filename='README.md',
       packages=['tracestack'],

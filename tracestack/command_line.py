@@ -14,12 +14,13 @@ def run():
     """
     parser = _build_parser()
     args = vars(parser.parse_args())
+    print(args)
     script = args.pop("script")
     handler = ExceptionHandler(**args)
     if script:
         # set up the system variables
         sys.argv = sys.argv[1:]
-        sys.path[0] = os.path.dirname(os.path.abspath(args["script"]))
+        sys.path[0] = os.path.dirname(os.path.abspath(script))
         try:
             runpy.run_path(script, run_name="__main__")
         except:
@@ -64,6 +65,7 @@ def _print_clean_traceback(einfo):
         # the error call is coming from inside the house
         # this shouldn't happen, but if it does, do the default behavior
         sys.__excepthook__(sys.exc_info)
+        print("inside the house")
     else:
         # remove the traceback levels that relate to runpy or trace
         extracted = [level for level in 
@@ -74,4 +76,5 @@ def _print_clean_traceback(einfo):
         print("Traceback (most recent call last):", file=sys.stderr)
         for level in extracted:
             print(level, end="", file=sys.stderr)
-        print(traceback.format_exception_only(einfo[0], einfo[1])[0], end="", file=sys.stderr)
+        for line in traceback.format_exception_only(einfo[0], einfo[1]):
+            print(line, end="", file=sys.stderr)
