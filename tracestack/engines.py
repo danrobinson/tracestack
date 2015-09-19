@@ -7,7 +7,7 @@ class Engine(object):
 
     def __init__(self, *args, **kwargs):
         self.additional_terms = []
-        self.keywords = kwargs.get("keywords", ["python"])
+        self.keywords = ["python"]
 
     def search(self, error_string):
         error_arguments = self.query_args(error_string)

@@ -59,5 +59,8 @@ target/
 # Sublime project
 *.sublime*
 
+# autoenv
+.env
+
 # DS_Store
 .DS_Store
