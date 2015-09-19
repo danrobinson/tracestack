@@ -20,6 +20,11 @@ Instantly search your Python error messages on the web
 
 Do a post-mortem autopsy of your last exception ...
 
+    >>> 1/0
+    Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+    ZeroDivisionError: integer division or modulo by zero
+
     >>> tracestack.pm()
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
@@ -28,13 +33,15 @@ Do a post-mortem autopsy of your last exception ...
 
 ... or catch all future exceptions ...
 
-    tracestack.enable()
-    ...
-    # buggy code here
-    ...
-    # tracestack.disable()
+    >>> tracestack.enable()
+    >>> 1/0
+    Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+    ZeroDivisionError: integer division or modulo by zero
+    Type s to search this error message on Stack Overflow (using Google):
+    >>> tracestack.disable() # optional
 
-... or in any Python script run from the command line ...
+... or catch exceptions in any Python script run from the command line ...
 
     $ tracestack manage.py runserver
 
@@ -47,13 +54,21 @@ Do a post-mortem autopsy of your last exception ...
     (TracestackConsole)
     >>> 
 
-... or in only one function . . .
+... or in only one function ...
 
     from tracestack import trace
 
-    @trace
-    def buggy_function():
-        # ... buggy code ...
+    >>> @trace
+    >>> def buggy_function():
+        1/0
+    
+    >>> buggy_function()
+    Traceback (most recent call last):
+      File "<console>", line 1, in <module>
+    ZeroDivisionError: integer division or modulo by zero
+    Type s to search this error message on Stack Overflow (using Google):
+
+
 
 ## Options
 
@@ -71,7 +86,7 @@ Do a post-mortem autopsy of your last exception ...
       -e ENGINE, --engine ENGINE
                             the search engine to use:
                               'default': Google limited to stackoverflow.com, 
-                              'google': full web on Google, 
+                              'google': full web search on Google, 
                               'stackoverflow': StackOverflow site search
 
 In addition to being used on the command line, any of these arguments can be passed to the `pm`, `enable`, and `trace` functions:

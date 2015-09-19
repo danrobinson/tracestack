@@ -8,9 +8,18 @@ except NameError:
     pass
 
 class ExceptionHandler(object):
-    """When called, prompts the user to type s to search the error message"""
+    """Callable exception handler that can replace sys.__excepthook__."""
 
-    def __init__(self, engine="default", skip=False, *args, **kwargs):
+    def __init__(self, skip=False, engine="default", *args, **kwargs):
+        """Initializer takes same arguments as pm, enable, trace, etc.
+
+        Args:
+            skip (bool) -- whether to skip the prompt (default: False)
+            engine (string) -- the search engine to use (default: "default")
+                'default': Google limited to stackoverflow.com, 
+                'google': full web search on Google, 
+                'stackoverflow': StackOverflow site search
+        """
         if engine in ("default", "google"):
             self.engine = GoogleEngine(engine=engine, *args, **kwargs)
         elif engine == "stackoverflow":
@@ -22,28 +31,30 @@ class ExceptionHandler(object):
         self.skip = skip
 
     def __call__(self, *einfo):
+        """Handles error.  Takes same three arguments as 
+        sys.__excepthook__: type, value, traceback."""
         einfo = einfo or sys.exc_info()
-        self.print_traceback(*einfo)
-        self.handle_error(*einfo)
+        self._print_traceback(*einfo)
+        self._handle_error(*einfo)
 
-    def print_traceback(self, *einfo):
+    def _print_traceback(self, *einfo):
         traceback.print_exception(*einfo)
 
-    def handle_error(self, *einfo):
-        error_string = self.get_error_string(*einfo)
-        self.handle_string(error_string)
+    def _handle_error(self, *einfo):
+        error_string = self._get_error_string(*einfo)
+        self._handle_string(error_string)
 
-    def get_error_string(self, *einfo):
+    def _get_error_string(self, *einfo):
         (etype, evalue, tb) = einfo
         error_string = "{0} {1}".format(etype.__name__, 
                                 evalue)
         return error_string
 
-    def search(self, error_string):
+    def _search(self, error_string):
         search_url = self.engine.search(error_string)
         webbrowser.open(search_url)
 
-    def prompt(self):
+    def _prompt(self):
         if self.skip:
             return True
         else:
@@ -53,6 +64,6 @@ class ExceptionHandler(object):
             else:
                 return False
 
-    def handle_string(self, error_string):
-        if self.prompt():
-            self.search(error_string)
+    def _handle_string(self, error_string):
+        if self._prompt():
+            self._search(error_string)

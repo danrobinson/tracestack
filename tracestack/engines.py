@@ -4,6 +4,8 @@ except ImportError:
     from urllib.parse import urlencode
 
 class Engine(object):
+    """Object that generates a search URL based on an error
+    message, for a given engine."""
 
     def __init__(self, *args, **kwargs):
         self.additional_terms = []

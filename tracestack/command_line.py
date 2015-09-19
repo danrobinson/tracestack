@@ -32,6 +32,8 @@ def run():
         console.interact()
 
 def _build_parser():
+    """Returns the argument parser (which is built using argparse)."""
+    
     parser = argparse.ArgumentParser(description='instantly search your ' + \
                                                  'Python error messages on' + \
                                                  ' the web',
@@ -46,7 +48,7 @@ def _build_parser():
                         '--engine', 
                         help="""the search engine to use:
   'default': Google limited to stackoverflow.com, 
-  'google': full web on Google, 
+  'google': full web search on Google, 
   'stackoverflow': StackOverflow site search""", 
                         default="default", 
                         choices=['default', 'google', 'stackoverflow'], 
@@ -56,6 +58,7 @@ def _build_parser():
 
 def _print_clean_traceback(einfo):
     """Print the traceback, without showing all the overhead added by tracestack."""
+
     extracted = traceback.extract_tb(einfo[2])
     if extracted[-1][0] in ('trace', 'runpy.py'):
         # the error call is coming from inside the house
