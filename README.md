@@ -29,7 +29,7 @@ Do a post-mortem autopsy of your last exception ...
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
-    Type s to search this error message on Stack Overflow (using Google):
+    Hit spacebar to search this error message on Stack Overflow (using Google):
 
 ... or catch all future exceptions ...
 
@@ -38,7 +38,7 @@ Do a post-mortem autopsy of your last exception ...
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
-    Type s to search this error message on Stack Overflow (using Google):
+    Hit spacebar to search this error message on Stack Overflow (using Google):
 
     >>> tracestack.disable()
 
