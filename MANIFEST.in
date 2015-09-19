@@ -1,0 +1,5 @@
+include README.md LICENSE
+recursive-include tracestack *
+recursive-include tests *
+recursive-exclude tracestack *.pyc
+recursive-exclude tests *.pyc
