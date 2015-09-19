@@ -4,8 +4,8 @@ from tracestack.handler import ExceptionHandler
 def pm(*args, **kwargs):
     """Post-mortem function that searches the last exception."""
 
-    einfo = sys.exc_info()
-    if einfo[0]:
+    if hasattr(sys, "last_type"):
+        einfo = (sys.last_type, sys.last_value, sys.last_traceback)
         ExceptionHandler(*args, **kwargs)(*einfo)
     else:
         raise ValueError("no last exception")
