@@ -5,7 +5,7 @@ from tracestack.engines import GoogleEngine, StackEngine
 try: 
     input = raw_input
 except NameError: 
-    pass
+    input = input
 
 class ExceptionHandler(object):
     """Callable exception handler that can replace sys.__excepthook__."""

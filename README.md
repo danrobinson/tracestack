@@ -41,20 +41,7 @@ Do a post-mortem autopsy of your last exception ...
     Type s to search this error message on Stack Overflow (using Google):
     >>> tracestack.disable() # optional
 
-... or catch exceptions in any Python script run from the command line ...
-
-    $ tracestack manage.py runserver
-
-... or in a read-evaluate-print-loop ... 
-
-    $ tracestack
-    Python 2.7.6 (default, Sep  9 2014, 15:04:36) 
-    [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
-    Type "help", "copyright", "credits" or "license" for more information.
-    (TracestackConsole)
-    >>> 
-
-... or in only one function ...
+... or catch exceptions in only one function ...
 
     from tracestack import trace
 
@@ -67,6 +54,19 @@ Do a post-mortem autopsy of your last exception ...
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
     Type s to search this error message on Stack Overflow (using Google):
+
+... or in any Python script run from the command line ...
+
+    $ tracestack manage.py runserver
+
+... or in a read-evaluate-print loop ... 
+
+    $ tracestack
+    Python 2.7.6 (default, Sep  9 2014, 15:04:36) 
+    [GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.39)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    (TracestackConsole)
+    >>> 
 
 
 
@@ -110,8 +110,8 @@ In addition to being used on the command line, any of these arguments can be pas
  * pipe error messages directly into queries
 * [gleitz/howdoi](https://github.com/gleitz/howdoi)
  * get programming answers to plaintext questions in the command line
- * works via insane Jedi magic
+ * works using inexplicable Jedi magic
 * [dgrtwo/tracestack](https://github.com/dgrtwo/tracestack)
- * original tracestack package for R programs
+ * original tracestack package for the R language
  * written on a phone
 

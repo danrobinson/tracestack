@@ -1,20 +1,24 @@
 import unittest
 import sys
 import tracestack
-import mock
 import webbrowser
 
-exc_return_value = (type(Exception("exception message")), Exception("exception message"), mock.Mock())
-mock_exc_info = mock.Mock(return_value=exc_return_value)
-mock_webbrowser = mock.Mock()
-mock_traceback = mock.Mock()
-mock_input = mock.Mock(return_value="s")
+try:
+	from mock import Mock, patch
+except ImportError:
+	from unittest.mock import Mock, patch
+
+exc_return_value = (type(Exception("exception message")), Exception("exception message"), Mock())
+mock_exc_info = Mock(return_value=exc_return_value)
+mock_webbrowser = Mock()
+mock_traceback = Mock()
+mock_input = Mock(return_value="s")
 
 
-@mock.patch('tracestack.handler.sys.exc_info', mock_exc_info)
-@mock.patch('tracestack.handler.webbrowser', mock_webbrowser)
-@mock.patch('tracestack.handler.traceback', mock_traceback)
-@mock.patch('tracestack.handler.input', mock_input)
+@patch('tracestack.handler.sys.exc_info', mock_exc_info)
+@patch('tracestack.handler.webbrowser', mock_webbrowser)
+@patch('tracestack.handler.traceback', mock_traceback)
+@patch('tracestack.handler.input', mock_input)
 class TestHandler(unittest.TestCase):
 
 	default_url = 		('http://www.google.com/search?' + 
