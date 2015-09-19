@@ -8,9 +8,9 @@ Instantly search your Python error messages on the web
 * REPL mode
 * Compatible with Python 2 and 3
 * Can search for answers on:
- * Google, limited to stackoverflow.com (default)
- * The entire web (via Google)
- * StackOverflow's own search engine
+    * Google, limited to stackoverflow.com (default)
+    * The entire web (via Google)
+    * StackOverflow's own search engine
 
 ## Installation
 
@@ -106,12 +106,12 @@ In addition to being used on the command line, any of these arguments can be pas
 ## Excellent Alternatives 
 
 * [lukasschwab/Stackit](https://github.com/lukasschwab/stackit)
- * search and browse StackOverflow in the command line
- * pipe error messages directly into queries
+    * search and browse StackOverflow in the command line
+    * pipe error messages directly into queries
 * [gleitz/howdoi](https://github.com/gleitz/howdoi)
- * get programming answers to plaintext questions in the command line
- * works using inexplicable Jedi magic
+    * get programming answers to plaintext questions in the command line
+    * works using inexplicable Jedi magic
 * [dgrtwo/tracestack](https://github.com/dgrtwo/tracestack)
- * original tracestack package for the R language
- * written on a phone
+    * original tracestack package for the R language
+    * written on a phone
 
