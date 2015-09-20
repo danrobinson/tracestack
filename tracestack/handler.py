@@ -6,11 +6,11 @@ from tracestack.utils import getch
 class ExceptionHandler(object):
     """Callable exception handler that can replace sys.__excepthook__."""
 
-    def __init__(self, skip=False, engine="default", *args, **kwargs):
+    def __init__(self, prompt=False, engine="default", *args, **kwargs):
         """Initializer takes same arguments as pm, enable, trace, etc.
 
         Args:
-            skip (bool) -- whether to skip the prompt (default: False)
+            prompt (bool) -- whether to prompt the user (default: False)
             engine (string) -- the search engine to use (default: "default")
                 'default': Google limited to stackoverflow.com, 
                 'google': full web search on Google, 
@@ -24,7 +24,7 @@ class ExceptionHandler(object):
             msg = "'%s' is not a valid engine option (choose between " + \
                   "'default', 'google', and 'stackoverflow')"
             raise ValueError(msg % engine)
-        self.skip = skip
+        self.prompt = prompt
 
     def __call__(self, *einfo):
         """Handles error.  Takes same three arguments as 
@@ -50,14 +50,17 @@ class ExceptionHandler(object):
         webbrowser.open(search_url)
 
     def _prompt(self):
-        if self.skip:
-            return True
-        else:
-            choice = getch("Hit spacebar to search this error message on %s: " % self.engine.name())
+        if self.prompt:
+            print("Hit spacebar to search this error message on %s: " % self.engine.name(), end="")
+            sys.stdout.flush()
+            choice = getch()
             if choice == " ":
                 return True
             else:
                 return False
+        else:
+            print("Searching this error message on %s..." % self.engine.name())
+            return True
 
     def _handle_string(self, error_string):
         if self._prompt():

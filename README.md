@@ -1,12 +1,13 @@
 # Tracestack
 
-Tracestack lets you search your latest Python error message on Stackoverflow or Google, with a single keystroke.
+Tracestack lets you instantly search your Python error messages on Stackoverflow or Google.
 
 ## Features
 
 * Integrate tracestack into your code in seconds, or run it from the command line
 * Post-mortem mode
 * REPL mode
+* Automatically search errors, or prompt after each error
 * Compatible with Python 2 and 3
 * Can search for answers on:
     * Google, limited to stackoverflow.com (default)
@@ -15,31 +16,33 @@ Tracestack lets you search your latest Python error message on Stackoverflow or 
 
 ## Installation
 
-    pip install tracestack
+    $ pip install tracestack
+    
+    >>> import tracestack
 
 ## Uses and Examples
 
 Do a post-mortem autopsy of your last exception ...
-
+    
     >>> 1 / 0
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
-
+    
     >>> tracestack.pm()
     Traceback (most recent call last):
       File "<console>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
-    Hit spacebar to search this error message on Stack Overflow (using Google):
+    Searching this error message on Stack Overflow (using Google)...
 
 ... or catch all future exceptions ...
 
     >>> tracestack.enable()
     >>> 1 / 0
     Traceback (most recent call last):
-      File "<console>", line 1, in <module>
+      File "<stdin>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
-    Hit spacebar to search this error message on Stack Overflow (using Google):
+    Searching this error message on Stack Overflow (using Google)...
 
     >>> tracestack.disable()
 
@@ -49,7 +52,7 @@ Do a post-mortem autopsy of your last exception ...
 
     >>> @trace
     >>> def divide_by_zero():
-            1 / 0
+    ...     1 / 0
 
 ... or in any Python script run from the command line ...
 
@@ -66,7 +69,7 @@ Do a post-mortem autopsy of your last exception ...
 
 ## Options
 
-    usage: tracestack [-h] [-s] [-e ENGINE] [SCRIPT] [ARGUMENTS [ARGUMENTS ...]]
+    usage: tracestack [-h] [-p] [-e ENGINE] [SCRIPT] [ARGUMENTS [ARGUMENTS ...]]
     
     instantly search your Python error messages on the web
     
@@ -76,24 +79,41 @@ Do a post-mortem autopsy of your last exception ...
     
     optional arguments:
       -h, --help            show this help message and exit
-      -s, --skip            skip the prompt and immediately search each exception
+      -p, --prompt          prompt the user rather than immediately searching
       -e ENGINE, --engine ENGINE
                             the search engine to use:
-                              'default': Google limited to stackoverflow.com, 
-                              'google': full web search on Google, 
+                              'default': Google search limited to stackoverflow.com
+                              'google': Google search of the full web
                               'stackoverflow': StackOverflow site search
 
 In addition to being used on the command line, any of these arguments can be passed to the `pm`, `enable`, and `trace` functions:
     
-    >>> 1/0
-    >>> tracestack.pm(skip=True) # immediately runs search based on last exception
-    
-    >>> tracestack.enable(engine="google")
-    >>> 1/0
-    
-    >>> tracestack.trace(engine="stackoverflow")
+    >>> tracestack.enable(prompt=True)
+    >>> 1 / 0
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ZeroDivisionError: integer division or modulo by zero
+    Hit spacebar to search this error message on Stack Overflow (using Google): 
+
+    >>> 1 / 0
+    >>> tracestack.pm(engine="google")
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ZeroDivisionError: integer division or modulo by zero
+    Searching this error message on the web (using Google)...
+
+    >>> @tracestack.trace(engine="stackoverflow")
     >>> def divide_by_zero():
-    ...     1/0
+    ...     1 / 0
+    ...
+    >>> divide_by_zero()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+      File "tracestack/decorators.py", line 26, in wrapper
+        result = func(*args, **kwargs)
+      File "<stdin>", line 3, in divide_by_zero
+    ZeroDivisionError: integer division or modulo by zero
+    Searching this error message on Stack Overflow...
 
 ## Excellent Alternatives 
 

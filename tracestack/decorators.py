@@ -12,7 +12,7 @@ def trace(*args, **kwargs):
     def buggy_function():
         ...
 
-    @tracestack.trace(skip=True)
+    @tracestack.trace(prompt=True)
     def buggy_function():
         ...
 

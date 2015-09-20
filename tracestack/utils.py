@@ -9,7 +9,7 @@ class _GetchUnix:
     def __init__(self):
         import tty, sys
 
-    def __call__(self, msg):
+    def __call__(self):
         import sys, tty, termios
         fd = sys.stdin.fileno()
         old_settings = termios.tcgetattr(fd)
@@ -25,7 +25,7 @@ class _GetchWindows:
     def __init__(self):
         import msvcrt
 
-    def __call__(self, msg):
+    def __call__(self):
         import msvcrt
         return msvcrt.getch()
 
@@ -39,10 +39,8 @@ class _Getch:
         except ImportError:
             self.impl = _GetchUnix()
 
-    def __call__(self, msg): 
-        print(msg, end="")
-        sys.stdout.flush()
-        char = self.impl(msg)
+    def __call__(self): 
+        char = self.impl()
         print(char)
         return char
 

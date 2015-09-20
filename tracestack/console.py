@@ -10,7 +10,7 @@ class TracestackConsole(InteractiveConsole):
     def __init__(self, *args, **kwargs):
         self.handler = ExceptionHandler(*args, **kwargs)
         kwargs.pop("engine")
-        kwargs.pop("skip")
+        kwargs.pop("prompt")
         kwargs.pop("arguments")
         InteractiveConsole.__init__(self, *args, **kwargs)
 

@@ -43,13 +43,13 @@ def _build_parser():
                         help='the Python script')
     parser.add_argument('arguments', metavar='ARGUMENTS', type=str, nargs='*',
                         help='any arguments to the script')
-    parser.add_argument('-s', '--skip', help='skip the prompt and immediately search each exception',
+    parser.add_argument('-p', '--prompt', help='prompt the user rather than immediately searching',
                         action='store_true')
     parser.add_argument('-e', 
                         '--engine', 
                         help="""the search engine to use:
-  'default': Google limited to stackoverflow.com, 
-  'google': full web search on Google, 
+  'default': Google search limited to stackoverflow.com
+  'google': Google search of the full web
   'stackoverflow': StackOverflow site search""", 
                         default="default", 
                         choices=['default', 'google', 'stackoverflow'], 
