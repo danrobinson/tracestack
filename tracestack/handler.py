@@ -7,7 +7,7 @@ class ExceptionHandler(object):
     """Callable exception handler that can replace sys.__excepthook__."""
 
     def __init__(self, prompt=False, engine="default", *args, **kwargs):
-        """Initializer takes same arguments as pm, enable, trace, etc.
+        """Initializer takes same arguments as command line, pm, on, trace, etc.
 
         Args:
             prompt (bool) -- whether to prompt the user (default: False)
