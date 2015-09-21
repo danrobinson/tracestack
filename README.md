@@ -35,14 +35,14 @@ Do a post-mortem autopsy of your last exception ...
 
 ... or catch all future exceptions ...
 
-    >>> tracestack.enable()
+    >>> tracestack.on()
     >>> 1 / 0
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     ZeroDivisionError: integer division or modulo by zero
     Searching this error message on Stack Overflow (using Google)...
 
-    >>> tracestack.disable()
+    >>> tracestack.off()
 
 ... or catch exceptions in only one function ...
 
@@ -88,9 +88,9 @@ Do a post-mortem autopsy of your last exception ...
                               'google': Google search of the full web
                               'stackoverflow': StackOverflow site search
 
-In addition to being used on the command line, any of these arguments can be passed to the `pm`, `enable`, and `trace` functions:
+In addition to being used on the command line, any of these arguments can be passed to the `pm`, `on`, and `trace` functions:
     
-    >>> tracestack.enable(prompt=True)
+    >>> tracestack.on(prompt=True)
     >>> 1 / 0
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
