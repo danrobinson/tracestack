@@ -4,7 +4,7 @@ from tracestack.handler import ExceptionHandler
 
 
 class TracestackConsole(InteractiveConsole):
-    """An interactive console for running code or REPL loops that handle
+    """An interactive console for running code or REPLs while handling
     errors using the tracestack handler."""
 
     def __init__(self, *args, **kwargs):
