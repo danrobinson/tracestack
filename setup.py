@@ -8,12 +8,12 @@ except(IOError, ImportError):
 from setuptools import setup
 
 setup(name='tracestack',
-      version='0.2.0',
+      version='0.2.1',
       description='Instantly search your Python error messages on the web.',
       author='Dan Robinson',
       author_email='danrobinson010@gmail.com',
       url='https://www.github.com/danrobinson/tracestack',
-      download_url='https://github.com/danrobinson/tracestack/tarball/0.2.0',
+      download_url='https://github.com/danrobinson/tracestack/tarball/0.2.1',
       long_description=long_description,
       packages=['tracestack'],
       test_suite="tests",
