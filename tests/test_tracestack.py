@@ -114,12 +114,12 @@ class TestHandler(unittest.TestCase):
 
 class TestFunctions(unittest.TestCase):
 
-	def test_enable(self):
-		tracestack.enable()
+	def test_on_off(self):
+		tracestack.on()
 		self.assertIsNot(sys.excepthook, sys.__excepthook__)
 		self.assertTrue(isinstance(sys.excepthook, 
 								   tracestack.handler.ExceptionHandler))
-		tracestack.disable()
+		tracestack.off()
 		self.assertIs(sys.excepthook, sys.__excepthook__)
 
 	def test_decorator(self):

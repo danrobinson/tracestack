@@ -10,14 +10,13 @@ def pm(*args, **kwargs):
     else:
         raise ValueError("no last exception")
 
-def enable(*args, **kwargs):
+def on(*args, **kwargs):
     """Install the tracestack exception handler as the system exception 
     handler."""
 
     sys.excepthook = ExceptionHandler(*args, **kwargs)
 
-def disable(*args, **kwargs):
+def off(*args, **kwargs):
     """Revert to the default exception handler."""
 
     sys.excepthook = sys.__excepthook__
-
