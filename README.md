@@ -1,13 +1,11 @@
 # Tracestack
 
-Tracestack lets you instantly search your Python error messages on Stackoverflow or Google.
+Instantly search your Python error messages on the web.
 
 ## Features
 
 * Integrate tracestack into your code in seconds, or run it from the command line
-* Post-mortem mode
-* REPL mode
-* Automatically search errors, or prompt after each error
+* You can automatically search every error, get prompted to search after each error, or just search your latest error.
 * Compatible with Python 2 and 3
 * Can search for answers on:
     * Google, limited to stackoverflow.com (default)
@@ -66,6 +64,9 @@ Do a post-mortem autopsy of your last exception ...
     Type "help", "copyright", "credits" or "license" for more information.
     (TracestackConsole)
     >>> 1 / 0
+    
+<img src="http://i.imgur.com/aEHs026.gif" />
+
 
 ## Options
 
