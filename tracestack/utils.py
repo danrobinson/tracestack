@@ -45,5 +45,4 @@ class _Getch:
         return char
 
 
-
 getch = _Getch()
