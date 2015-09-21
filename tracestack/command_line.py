@@ -28,7 +28,7 @@ def run():
             _print_clean_traceback(einfo)
             handler.handle_error(*einfo)
     else:
-        # no additional arguments were given; run the REPL loop
+        # no additional arguments were given; run the REPL
         console = TracestackConsole(**args)
         console.interact()
 

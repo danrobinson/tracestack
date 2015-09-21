@@ -125,6 +125,12 @@ In addition to being used on the command line, any of these arguments can be pas
 * [gleitz/howdoi](https://github.com/gleitz/howdoi)
     * get programming answers to plaintext questions in the command line
     * works using inexplicable Jedi magic
+* [SylvainDe/DidYouMean-Python](https://github.com/SylvainDe/DidYouMean-Python)
+    * auto-suggests fixes to your errors based on common mistakes
+    * also possibly magic
+* [ajalt/fuckitpy](https://github.com/ajalt/fuckitpy)
+    * makes sure your Python code runs "whether it has any right to or not"
+    * please do not use this
 * [dgrtwo/tracestack](https://github.com/dgrtwo/tracestack)
     * original tracestack package for the R language
     * written on a phone
