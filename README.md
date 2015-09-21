@@ -65,6 +65,7 @@ Do a post-mortem autopsy of your last exception ...
     (TracestackConsole)
     >>> 1 / 0
     
+
 <img src="http://i.imgur.com/aEHs026.gif" />
 
 
