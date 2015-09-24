@@ -23,7 +23,6 @@ def trace(*args, **kwargs):
         @wraps(func)
         def wrapper(*args, **kwargs):
             tracestack.on(*handler_args, **handler_kwargs)
-            print handler_kwargs
             result = func(*args, **kwargs)
             tracestack.off()
             return result
