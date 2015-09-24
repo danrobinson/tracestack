@@ -3,6 +3,7 @@ import sys, webbrowser, traceback
 from tracestack.engines import GoogleEngine, StackEngine
 from tracestack.utils import getch
 
+
 class ExceptionHandler(object):
     """Callable exception handler that can replace sys.__excepthook__."""
 
@@ -65,3 +66,20 @@ class ExceptionHandler(object):
     def _handle_string(self, error_string):
         if self._prompt():
             self._search(error_string)
+
+def _get_ipython_handler(*args, **kwargs):
+    handler = ExceptionHandler(*args, **kwargs)
+    def handle_ipython(shell, etype, value, tb, tb_offset=None):
+        shell.showtraceback((etype, evalue, tb), tb_offset=tb_offset)
+        handler.handle_error(etype, evalue, tb)
+    return handle_ipython
+
+
+
+
+
+
+
+
+
+

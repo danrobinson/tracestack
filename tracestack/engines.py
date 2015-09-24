@@ -49,4 +49,3 @@ class StackEngine(Engine):
     def query_words(self, error_text):
         bracketed_keywords = ["[%s]" % kw for kw in self.keywords]
         return [error_text] + bracketed_keywords + self.additional_terms
-
