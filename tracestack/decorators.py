@@ -1,6 +1,6 @@
 import sys
 from functools import wraps
-from tracestack.handler import ExceptionHandler
+import tracestack
 
 def trace(*args, **kwargs):
     """Decorator that applies the tracestack exception handler to one function.
@@ -22,19 +22,22 @@ def trace(*args, **kwargs):
         """The decorator itself."""
         @wraps(func)
         def wrapper(*args, **kwargs):
-            sys.excepthook = handler
+            tracestack.on(*handler_args, **handler_kwargs)
+            print handler_kwargs
             result = func(*args, **kwargs)
-            sys.excepthook = sys.__excepthook__
+            tracestack.off()
             return result
         return wrapper
 
     if len(args) == 1 and callable(args[0]):
         # @tracestack was used as a decorator without arguments.
         # Return the decorated function.
-        handler = ExceptionHandler()
+        handler_args = []
+        handler_kwargs = {}
         return decorator(args[0])
     else:
         # @tracestack(...) was called with arguments.
         # Return a decorator based on those arguments.
-        handler = ExceptionHandler(*args, **kwargs)
+        handler_args = args
+        handler_kwargs = kwargs
         return decorator

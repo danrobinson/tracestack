@@ -131,4 +131,12 @@ class TestFunctions(unittest.TestCase):
         buggy_function()
         self.assertIs(sys.excepthook, sys.__excepthook__)
 
+        @tracestack.trace(prompt=True)
+        def buggy_function_prompted():
+            self.assertIsNot(sys.excepthook, sys.__excepthook__)
+            self.assertTrue(isinstance(sys.excepthook, 
+                                       tracestack.handler.ExceptionHandler))
+        buggy_function()
+        self.assertIs(sys.excepthook, sys.__excepthook__)
+
 
